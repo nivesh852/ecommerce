@@ -7,7 +7,7 @@ The whole application is split into a few major parts:
 * [backend](./backend) - the backend implementation that exposes an API for the frontend with frontend written in HTMX
 * [docs](./docs) - documentation that's more high-level (ADRs, architecture diagrams, etc)
 
-If you find anything that you can improve or add - feel free to talk about it in the [discussions](https://github.com/nivesh852/go-ecommerce/discussions) or create a [pull request](https://github.com/nivesh852/go-ecommerce/pulls).
+If you find anything that you can improve or add - feel free to talk about it in the [discussions](https://github.com/nivesh852/ecommerce/discussions) or create a [pull request](https://github.com/nivesh852/ecommerce/pulls).
 
 The project is a very early stage so there's a lot of work to do so every contribution is welcome!
 
