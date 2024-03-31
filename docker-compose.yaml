@@ -1,0 +1,61 @@
+version: '3.7'
+
+services:
+  backend:
+    build:
+      context: ./backend
+      target: web
+    restart: unless-stopped
+    depends_on:
+      - migrate
+    links:
+      - postgres
+    ports:
+      - 8080:8080
+    networks:
+      - ecommerce
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_HOST: postgres
+  postgres:
+    image: postgres
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: ecommerce
+    networks:
+      - ecommerce
+  migrate:
+    image: migrate/migrate
+    restart: on-failure
+    depends_on:
+      - postgres
+    links:
+      - postgres
+    volumes:
+      - ./migrations:/migrations
+    networks:
+      - ecommerce
+    command: ["-path", "/migrations", "-database",  "postgres://postgres:postgres@postgres:5432/ecommerce?sslmode=disable", "up"]
+  seeds:
+    build:
+      context: ./backend
+      target: cli
+    depends_on:
+      - migrate
+    links:
+      - postgres
+    networks:
+      - ecommerce
+    command: seeds
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_HOST: postgres
+
+networks:
+  ecommerce:
+    driver: bridge
