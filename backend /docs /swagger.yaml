@@ -1,0 +1,217 @@
+basePath: /api/v1
+definitions:
+  https.ErrorResponse:
+    properties:
+      detail:
+        type: string
+      title:
+        type: string
+      type:
+        type: string
+    type: object
+  port.AddToCartRequest:
+    properties:
+      product_id:
+        type: string
+      quantity:
+        type: integer
+    type: object
+  port.Client:
+    properties:
+      password:
+        type: string
+      username:
+        type: string
+    type: object
+  port.NewClient:
+    properties:
+      password:
+        type: string
+      username:
+        type: string
+    type: object
+  port.price:
+    properties:
+      amount:
+        type: number
+      currency:
+        type: string
+    type: object
+  port.showCartItemResponse:
+    properties:
+      id:
+        type: string
+      name:
+        type: string
+      price:
+        $ref: '#/definitions/port.price'
+      quantity:
+        type: integer
+    type: object
+  port.showCartResponse:
+    properties:
+      items:
+        items:
+          $ref: '#/definitions/port.showCartItemResponse'
+        type: array
+    type: object
+  productcatalog.httpProduct:
+    properties:
+      description:
+        type: string
+      id:
+        type: string
+      name:
+        type: string
+      price:
+        $ref: '#/definitions/productcatalog.price'
+      thumbnail:
+        type: string
+    type: object
+  productcatalog.price:
+    properties:
+      amount:
+        type: number
+      currency:
+        type: string
+    type: object
+info:
+  contact: {}
+  title: Ecommerce API
+paths:
+  /auth/login:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: Client
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/port.Client'
+      produces:
+      - application/json
+      responses:
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/https.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/https.ErrorResponse'
+  /auth/logout:
+    delete:
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      responses:
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/https.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/https.ErrorResponse'
+  /auth/me:
+    get:
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      responses:
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/https.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/https.ErrorResponse'
+  /auth/register:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: NewClient
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/port.NewClient'
+      produces:
+      - application/json
+      responses:
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/https.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/https.ErrorResponse'
+  /cart/{cartId}:
+    get:
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/port.showCartResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/https.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/https.ErrorResponse'
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: Cart
+        in: body
+        name: cart
+        required: true
+        schema:
+          $ref: '#/definitions/port.AddToCartRequest'
+      produces:
+      - application/json
+      responses:
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/https.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/https.ErrorResponse'
+  /products:
+    get:
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/productcatalog.httpProduct'
+            type: array
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/https.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/https.ErrorResponse'
+swagger: "2.0"
