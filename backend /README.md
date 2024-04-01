@@ -18,7 +18,7 @@ graph TD;
 
 ## Requirements
 
-To be able to run the project you have to have Go installed. By default, it works with an postgres database implementation. For further configuration credentials and so on please go to the [web](./cmd/web) page.
+To be able to run the project you have to have Go installed. By default, it works with an postgres database implementation. For further configuration credentials and so on please go to the [web](https://github.com/nivesh852/ecommerce/tree/main/backend%20/cmd/web%20) page.
 
 ## Running tests
 
