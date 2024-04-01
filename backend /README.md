@@ -2,10 +2,10 @@
 
 The backend is written in Go and split into several smaller parts:
 
-* [cart](./cart)
-* [product catalog](./productcatalog)
-* [internal](./internal)
-* [cmd/web](./cmd/web)
+* [cart](https://github.com/nivesh852/ecommerce/tree/main/backend%20/cart%20)
+* [product catalog](https://github.com/nivesh852/ecommerce/tree/main/backend%20/productcatalog%20)
+* [internal](https://github.com/nivesh852/ecommerce/tree/main/backend%20/internal%20)
+* [cmd/web](https://github.com/nivesh852/ecommerce/tree/main/backend%20/cmd/web%20)
 
 ## Context map
 
