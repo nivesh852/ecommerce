@@ -4,7 +4,7 @@ The `application` is the whole program that should be run in our binary.
 
 Every application contains the following parts:
 
-* [dependencies](../dependency)
+* [dependencies](https://github.com/nivesh852/ecommerce/tree/main/backend%20/internal%20/dependency%20)
 * [Bounded Contexts](https://martinfowler.com/bliki/BoundedContext.html)
 
 ## Usage
